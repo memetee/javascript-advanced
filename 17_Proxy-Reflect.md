@@ -813,7 +813,7 @@ foo()
 
 - 那么我们再来看一下对象的响应式：
 
-![image-20220621073820781](.\17_Proxy-Reflect\image-20220621073820781.png)
+![image-20220621073820781](./17_Proxy-Reflect.assets/image-20220621073820781.png)
 
 ```js
 const obje = {
