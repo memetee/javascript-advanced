@@ -1,8 +1,6 @@
 ## 监听对象的操作
 
- 我们先来看一个需求：有一个对象，我们希望监听这个对象中的属性被设置或获取的过程
-
-比如说
+ 我们先来看一个需求：有一个对象，我们希望监听这个对象中的属性被设置或获取的过程，例如
 
 ```js
 const obj = {name: 'why'}
@@ -71,13 +69,11 @@ kobe
 
 但是这样做有什么缺点呢？
 
- 首先，Object.defineProperty设计的初衷，不是为了去监听截止一个对象中所有的属性的（属性的变化）。
-
--  我们在定义某些属性的时候，初衷其实是定义普通的属性，但是后面我们强行将它变成了数据属性描述符。
-
- 其次，如果我们想监听更加丰富的操作，比如新增属性、删除属性，那么 Object.defineProperty是无能为力的。
+- 首先，Object.defineProperty设计的初衷，不是为了去监听劫持一个对象中所有的属性的（属性的变化）。我们在定义某些属性的时候，初衷其实是定义普通的属性，但是后面我们强行将它变成了数据属性描述符。
+- 其次，如果我们想监听更加丰富的操作，比如新增属性、删除属性，那么 Object.defineProperty是无能为力的。
 
 ```js
+// 新增height
 obj.height = 1.88
 // definedProperty是监听不到的
 // 或者是删除一个属性  defineProperty也是监听不到的
@@ -85,15 +81,15 @@ obj.height = 1.88
 
  所以我们要知道，存储数据描述符设计的初衷并不是为了去监听一个完整的对象。
 
-所以es6提供了一个Proxy
+但是es6提供了一个新的API叫**Proxy**
 
 
 
 ## Proxy基本使用
 
-在ES6中，新增了一个**Proxy类**，这个类从名字就可以看出来，是用于帮助我们创建一个代理的，也就是说，如果我们希望监听一个对象的相关操作，那么我们可以先创建一个代理对象（Proxy对象）。
+在ES6中，新增了一个**Proxy类**，这个类从名字就可以看出来，是用于帮助我们创建一个代理的，也就是说，如果我们希望监听一个对象的相关操作，那么我们可以先创建一个**代理对象**（Proxy对象）。
 
-紧接着我们如果想监听一个对象，我们不应该直接去监听这个对象，我们应该先创建一个代理对象，之后对该对象的所有操作，都通过代理对象来完成，代理对象可以监听我们想要对原对象进行哪些操作；
+紧接着我们如果想监听一个对象，我们不应该直接去监听这个对象，我们应该先创建一个代理对象，之后对该对象的所有操作，都通过代理对象来完成，代理对象可以监听我们想要对原对象进行的所有操作；
 
 - 首先如果我们想监听一个对象，我们其实不应该直接修改这个对象，这种方式其实不好
 - 那么Proxy做的事其实就是先创建出一个代理对象
@@ -102,9 +98,10 @@ obj.height = 1.88
 
 我们可以将上面的案例用Proxy来实现一次：
 
-- 首先，我们需要new Proxy对象，并且传入需要侦听的对象以及一个处理对象，可以称之为handler； ü const p = new Proxy(target, handler)
+- 首先，我们需要new Proxy对象，并且传入需要侦听的对象以及一个处理对象，可以称之为handler；
+  - ```const p = new Proxy(target, handler)```
 
-- 其次，我们之后的操作都是直接对Proxy的操作，而不是原有的对象，因为我们需要在handler里面进行侦听；
+- 其次，我们之后的操作都是直接对Proxy的操作，而不是原有的对象，我们需要在handler里面进行侦听；
 
 
 ```js
@@ -133,13 +130,25 @@ console.log(obj.age);	//30
 
 可以看到我们修改Proxy对象，依然可以修改到Obj对象
 
-以上就是Proxy的基本操作，如果我们想监听到设置和获取怎么办呢？就可以重写捕获器
+以上就是Proxy的基本操作，如果我们想监听属性的设置和获取怎么办呢？就可以重写捕获器
 
 
 
 ## Proxy的set和get捕获器
 
 如果我们想要侦听某些具体的操作，那么就可以在handler中添加对应的捕捉器（Trap）：
+
+set和get分别对应的是函数类型；
+
+- set函数有四个参数：
+  - target：目标对象（侦听的对象）；
+  - property：将被设置的属性key；
+  - value：新属性值；
+  - receiver：调用的代理对象；
+- get函数有三个参数：
+  - target：目标对象（侦听的对象）；
+  - property：被获取的属性key；
+  - receiver：调用的代理对象；
 
 ```js
 const obj = {
@@ -176,17 +185,7 @@ console.log(obj.name);	// kobe
 console.log(obj.age);	// 30
 ```
 
-set和get分别对应的是函数类型；
 
-- set函数有四个参数：
-  - target：目标对象（侦听的对象）；
-  - property：将被设置的属性key；
-  - value：新属性值；
-  - receiver：调用的代理对象；
-- get函数有三个参数：
-  - target：目标对象（侦听的对象）；
-  - property：被获取的属性key；
-  - receiver：调用的代理对象；
 
 
 
@@ -382,13 +381,13 @@ Reflect中有哪些常见的方法呢？它和Proxy是一一对应的，也是13
 
 ### Reflect.getPrototypeOf(target)
 
-- 类似于 Object.getPrototypeOf()。
+- 类似于 Object.getPrototypeOf()，是用来获取一个对象的原型。
 
 
 
 ### Reflect.setPrototypeOf(target, prototype)
 
-- 设置对象原型的函数. 返回一个 Boolean， 如果更新成功，则返 回true。
+- 设置对象原型的函数. 返回一个 Boolean， 如果更新成功，则返回true。
 
 
 
@@ -610,8 +609,6 @@ const objProxy = new Proxy(obj, {
 
 经过上述验证，就能得到receiver指向的就是这个Proxy的实例对象
 
-- 
-
 那么receiver有什么作用呢？
 
 Reflect实际上是可以传递第三个参数的
@@ -661,20 +658,21 @@ let obj = {
     this._name = newValue
   }
 }
+obj.name = "kobe";
+console.log(obj.name); // kobe
 
 // 用Proxy来监听obj对象
 const objProxy = new Proxy(obj, {
     get: function (target, key, receiver) {
+      console.log('这里进来了两次')
       // 这里的receiver是objProxy,传递给Reflect.get后，会改变被代理对象的this
       return Reflect.get(target, key, receiver)	
     }
 })
-console.log(objProxy.name)
-	// kobe
-	// kobe
+console.log(objProxy.name) // kobe
 ```
 
-这里打印两次kobe
+这里打印两次 '这里进来了两次'
 
 第一次的访问this.name被拦截了进行一次打印
 
