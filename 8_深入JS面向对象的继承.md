@@ -62,7 +62,7 @@ obj.__proto__.__proto__ = {
 }
 ```
 
-<img src=".\8_深入JS面向对象的继承\image-20220613072044623.png" alt="image-20220613072044623" style="zoom:50%;" />
+<img src="./8_深入JS面向对象的继承.assets/image-20220613072044623.png" alt="image-20220613072044623" style="zoom:50%;" />
 
 
 
@@ -116,7 +116,7 @@ console.log(obj.__proto__.__proto__)	// null（到头了）
 
 ## 创建Object对象的内存图
 
-![image-20220613072250410](.\8_深入JS面向对象的继承\image-20220613072250410.png)
+![image-20220613072250410](./8_深入JS面向对象的继承.assets/image-20220613072250410.png)
 
 ```js
 var obj = {
@@ -152,7 +152,7 @@ console.log(p.__proto === Person.prototype) // true
 */
 ```
 
-![image-20220613072323644](.\8_深入JS面向对象的继承\image-20220613072323644.png)
+![image-20220613072323644](./8_深入JS面向对象的继承.assets/image-20220613072323644.png)
 
 
 
@@ -179,7 +179,7 @@ console.log(p1.toString())
 // 这里的valueOf和toString并不是p1这个对象的，也不是Person的prototype中的，而是顺着原型链找到Object的prototype对象才有的
 ```
 
-![image-20220613072359472](.\8_深入JS面向对象的继承\image-20220613072359472.png)
+![image-20220613072359472](./8_深入JS面向对象的继承.assets/image-20220613072359472.png)
 
 
 
@@ -221,7 +221,7 @@ Student.prototype.studying = function () {
 }
 ```
 
-![image-20220613072629604](.\8_深入JS面向对象的继承\image-20220613072629604.png)
+![image-20220613072629604](./8_深入JS面向对象的继承.assets/image-20220613072629604.png)
 
 
 
@@ -245,7 +245,7 @@ stu1.name = "kobe"
 
 
 
-![image-20220613072607153](.\8_深入JS面向对象的继承\image-20220613072607153.png)
+![image-20220613072607153](./8_深入JS面向对象的继承.assets/image-20220613072607153.png)
 
 
 
@@ -409,7 +409,7 @@ console.log(stu2.friends)	// [ 'james' ]
 
 
 
-![image-20220613072833741](.\8_深入JS面向对象的继承\image-20220613072833741.png)
+![image-20220613072833741](./8_深入JS面向对象的继承.assets/image-20220613072833741.png)
 
 
 
@@ -602,4 +602,4 @@ function inheritPrototype(SubType, SuperType) {
 
 ## 原型继承关系
 
-![image-20220828122554502](./8_深入JS面向对象的继承\image-20220828122554502.png)
+![image-20220828122554502](./8_深入JS面向对象的继承.assets/image-20220828122554502.png)

@@ -198,7 +198,7 @@ promise.then(res => {
 
 
 
-![image-20220707064518212](.\18_promise\image-20220707064518212.png)
+![image-20220707064518212](./27_手写promise.assets/image-20220707064518212.png)
 
 会报错，因为先调用的是new 也就是会先执行constructor中的代码，但是，这个时候this.onFulfilled是没有值的
 
@@ -360,19 +360,19 @@ queueMicrotask是加在微任务当中，会在本轮的事件循环中进行执
 
 如果接着在下面调用then,应该是两个then都会执行的，但是我们调用的话，只会执行第二个
 
-![image-20220707065950254](.\18_promise\image-20220707065950254.png)
+![image-20220707065950254](./27_手写promise.assets/image-20220707065950254.png)
 
 因为第二个会把第一个覆盖掉
 
 而且我们这里不能做链式调用
 
-![image-20220707070138792](.\18_promise\image-20220707070138792.png)
+![image-20220707070138792](./27_手写promise.assets/image-20220707070138792.png)
 
 
 
 当前的then方法不支持调用多次，后面把之前的方法调用，then里面的两个方法
 
-![image-20220707070617695](.\18_promise\image-20220707070617695.png)
+![image-20220707070617695](./27_手写promise.assets/image-20220707070617695.png)
 
 then方法不支持链式调用
 
@@ -459,17 +459,17 @@ promise.then(res => {
 
 ```
 
-![image-20220707071229835](.\18_promise\image-20220707071229835.png)
+![image-20220707071229835](./27_手写promise.assets/image-20220707071229835.png)
 
 
 
 但是如果promise变成了resolve
 
-![image-20220707071435510](.\18_promise\image-20220707071435510.png)
+![image-20220707071435510](./27_手写promise.assets/image-20220707071435510.png)
 
 不会，因为这里已经回调完了
 
-![image-20220707071608119](.\18_promise\image-20220707071608119.png)
+![image-20220707071608119](./27_手写promise.assets/image-20220707071608119.png)
 
 我在执行onFulfilledFns的时候，你延迟了一秒钟，但是我已经执行完了，等我执行完了你才加进来，这个时候，我肯定不会再来执行一遍你的
 
@@ -477,7 +477,7 @@ promise.then(res => {
 
 但是原生的promise是可以的
 
-![image-20220707071748205](.\18_promise\image-20220707071748205.png)
+![image-20220707071748205](./27_手写promise.assets/image-20220707071748205.png)
 
 这个代码就会直接回调的
 
@@ -485,7 +485,7 @@ promise.then(res => {
 
 那要怎么办呢？
 
-![image-20220707072055130](.\18_promise\image-20220707072055130.png)
+![image-20220707072055130](./27_手写promise.assets/image-20220707072055130.png)
 
 优化多次调用，延迟一会再调用
 
@@ -579,11 +579,11 @@ setTimeout(() => {
 
 
 
-![image-20220707072649015](.\18_promise\image-20220707072649015.png)
+![image-20220707072649015](./27_手写promise.assets/image-20220707072649015.png)
 
 如果这里都执行了，那么他们都会执行
 
-![image-20220707072915256](.\18_promise\image-20220707072915256.png)
+![image-20220707072915256](./27_手写promise.assets/image-20220707072915256.png)
 
 这样解决这个问题
 
@@ -682,21 +682,21 @@ setTimeout(() => {
 
 现在我们要做链式调用
 
-![image-20220707073523436](.\18_promise\image-20220707073523436.png)
+![image-20220707073523436](./27_手写promise.assets/image-20220707073523436.png)
 
 这样才能链式调用
 
 但是我们是没有返回值的，所以默认返回的是undefined
 
-![image-20220707073606856](.\18_promise\image-20220707073606856.png)
+![image-20220707073606856](./27_手写promise.assets/image-20220707073606856.png)
 
-![image-20220707073749138](.\18_promise\image-20220707073749138.png)
+![image-20220707073749138](./27_手写promise.assets/image-20220707073749138.png)
 
 但是这里不应该写死的， 而且，应该是第一次有结果的时候，才能拿到这个结果，然后在第二次才能调用resolve
 
 
 
-![image-20220707074225567](.\18_promise\image-20220707074225567.png)
+![image-20220707074225567](./27_手写promise.assets/image-20220707074225567.png)
 
 
 
@@ -839,39 +839,39 @@ Promise A+要实现的功能，现在已经实现完了
 
 我们之前的catch是放到then的第二个参数，但是如果我们想这样写，就必须实现一个catch函数
 
-![image-20220709081109342](.\18_promise\image-20220709081109342.png)
+![image-20220709081109342](./27_手写promise.assets/image-20220709081109342.png)
 
 我们可以这样写
 
-![image-20220709081347387](.\18_promise\image-20220709081347387.png)
+![image-20220709081347387](./27_手写promise.assets/image-20220709081347387.png)
 
 有一个问题
 
-![image-20220709081330166](.\18_promise\image-20220709081330166.png)
+![image-20220709081330166](./27_手写promise.assets/image-20220709081330166.png)
 
 因为这里是空的
 
-![image-20220709081425994](.\18_promise\image-20220709081425994.png)
+![image-20220709081425994](./27_手写promise.assets/image-20220709081425994.png)
 
 因为undefined会被加入到里面去，执行undefined就报错了
 
 解决
 
-![image-20220709081744868](.\18_promise\image-20220709081744868.png)
+![image-20220709081744868](./27_手写promise.assets/image-20220709081744868.png)
 
 
 
 继续执行
 
-![image-20220709081727117](.\18_promise\image-20220709081727117.png)
+![image-20220709081727117](./27_手写promise.assets/image-20220709081727117.png)
 
-![image-20220709082028799](.\18_promise\image-20220709082028799.png)
+![image-20220709082028799](./27_手写promise.assets/image-20220709082028799.png)
 
 所以调不到的
 
 要这样做
 
-![image-20220709082543272](.\18_promise\image-20220709082543272.png)
+![image-20220709082543272](./27_手写promise.assets/image-20220709082543272.png)
 
 ```js
 // ES6 ES2015
@@ -1011,21 +1011,21 @@ promise.then(res => {
 
 当前不能使用finally方法，因为catch没有return任何东西
 
-![image-20220709083452916](.\18_promise\image-20220709083452916.png)
+![image-20220709083452916](./27_手写promise.assets/image-20220709083452916.png)
 
 
 
-![image-20220709083531149](.\18_promise\image-20220709083531149.png)
+![image-20220709083531149](./27_手写promise.assets/image-20220709083531149.png)
 
 因为这里
 
-![image-20220709083604507](.\18_promise\image-20220709083604507.png)
+![image-20220709083604507](./27_手写promise.assets/image-20220709083604507.png)
 
 
 
 因为undefined，断层了
 
-![image-20220709083803538](.\18_promise\image-20220709083803538.png)
+![image-20220709083803538](./27_手写promise.assets/image-20220709083803538.png)
 
 ```js
 // ES6 ES2015

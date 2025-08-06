@@ -134,7 +134,7 @@ console.log(Foo.prototype.constructor)  // [Function: Foo]
 console.log(Foo.__proto__.constructor)  // [Function: Function]
 ```
 
-![image-20220828123813155](.\9_class类\image-20220828123813155.png)
+![image-20220828123813155](./9_class类.assets/image-20220828123813155.png)
 
 
 
@@ -409,11 +409,11 @@ var Person 后面写的自执行函数的原因？
 
 继承如何实现？
 
-![image-20220828124005231](.\9_class类\image-20220828124005231.png)
+![image-20220828124005231](./9_class类.assets/image-20220828124005231.png)
 
 这里包括原型的继承和静态方法的继承
 
-![image-20220828124010437](.\9_class类\image-20220828124010437.png)
+![image-20220828124010437](./9_class类.assets/image-20220828124010437.png)
 
 
 
@@ -501,7 +501,7 @@ np.running()
 
 ## 在react中的高阶组件
 
-![image-20220828123336888](.\9_class类\image-20220828123336888.png)
+![image-20220828123336888](./9_class类.assets/image-20220828123336888.png)
 
 这里利用到了很多前面学过的思维
 

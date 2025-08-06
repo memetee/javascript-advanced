@@ -11,7 +11,7 @@
 
 
 
-![image-20220802073858454](.\21_JavaScript模块化\image-20220802073858454.png)
+![image-20220802073858454](./21_JavaScript模块化.assets/image-20220802073858454.png)
 
 它们是没有独立空间的，也就是说在aaa.js里面定义的name在bbb可以访问的，那么在bbb定义了name它们就会冲突的那么我们想做的其实是上面四个JS文件，每一个都有自己独立的作用域，自己作用域的代码对外部其他JS作用域的代码不会有影响，它们是无法访问的，也就是我在a文件定义了sum，b文件是无法访问的，如果你想访问，那么可以通过在a文件抛出，在b文件引入的方式来获取。
 
@@ -354,13 +354,13 @@ info.sum(1, 2)
 
 /Users/coderwhy/Desktop/Node/TestCode/04_learn_node/05_javascript-module/02_commonjs/main.js中编写 require('why’)
 
-![image-20220726084849314](.\21_JavaScript模块化\image-20220726084849314.png)
+![image-20220726084849314](./21_JavaScript模块化.assets/image-20220726084849314.png)
 
 它首先会在当前文件目录下的node_modules查找这个文件，如果找不到就会去上一层目录，如果还找不到的话，就会在上一层目录，一直到顶层文件夹，如果再找不到，那么报错：not found
 
 所以假设我们下载了一个axios，它的查找规则就是在我们当前的文件夹的node_modules中去查找的
 
-![image-20220804074230704](.\21_JavaScript模块化\image-20220804074230704.png)
+![image-20220804074230704](./21_JavaScript模块化.assets/image-20220804074230704.png)
 
 找到之后，会自动给我们拼接index.js，然后去里面找index.js文件的
 
@@ -418,7 +418,7 @@ console.log('main.js代码后续运行')
 
 如果出现下图图模块的引用关系，那么加载顺序是什么呢？
 
-![image-20220726085021389](.\21_JavaScript模块化\image-20220726085021389.png)
+![image-20220726085021389](./21_JavaScript模块化.assets/image-20220726085021389.png)
 
 这个其实是一种数据结构：图结构；
 
@@ -485,7 +485,7 @@ AMD主要是应用于浏览器的一种模块化规范：
 
 - data-main属性的作用是在加载完src的文件后会加载执行该文件
 
-![image-20220805073527916](.\21_JavaScript模块化\image-20220805073527916.png)
+![image-20220805073527916](./21_JavaScript模块化.assets/image-20220805073527916.png)
 
 不能直接上面这样引用，要在下面这样引用
 
@@ -494,39 +494,39 @@ AMD主要是应用于浏览器的一种模块化规范：
 // 当加载了require之后，再加载index.js
 ```
 
-![image-20220805073943851](.\21_JavaScript模块化\image-20220805073943851.png)
+![image-20220805073943851](./21_JavaScript模块化.assets/image-20220805073943851.png)
 
 我们在文件中需要在define中写了
 
-![image-20220805074111387](.\21_JavaScript模块化\image-20220805074111387.png)
+![image-20220805074111387](./21_JavaScript模块化.assets/image-20220805074111387.png)
 
-![image-20220805074221981](.\21_JavaScript模块化\image-20220805074221981.png)
+![image-20220805074221981](./21_JavaScript模块化.assets/image-20220805074221981.png)
 
 注意这里不需要src
 
 上面的案例说明了一个问题，在foo中导出了东西，在main.js导入了东西，所以，这个就实现了模块化了
 
-![image-20220805074407664](.\21_JavaScript模块化\image-20220805074407664.png)
+![image-20220805074407664](./21_JavaScript模块化.assets/image-20220805074407664.png)
 
 如果给baseUrl为空
 
 那么就需要给foo加src
 
-![image-20220805074622336](.\21_JavaScript模块化\image-20220805074622336.png)
+![image-20220805074622336](./21_JavaScript模块化.assets/image-20220805074622336.png)
 
 然后我们在bar模块中引入foo
 
-![image-20220805074648040](.\21_JavaScript模块化\image-20220805074648040.png)
+![image-20220805074648040](./21_JavaScript模块化.assets/image-20220805074648040.png)
 
-![image-20220805074758539](.\21_JavaScript模块化\image-20220805074758539.png)
+![image-20220805074758539](./21_JavaScript模块化.assets/image-20220805074758539.png)
 
 
 
-![image-20220726130521419](.\21_JavaScript模块化\image-20220726130521419.png)
+![image-20220726130521419](./21_JavaScript模块化.assets/image-20220726130521419.png)
 
-![image-20220726130535618](.\21_JavaScript模块化\image-20220726130535618.png)
+![image-20220726130535618](./21_JavaScript模块化.assets/image-20220726130535618.png)
 
-![image-20220726130549285](.\21_JavaScript模块化\image-20220726130549285.png)
+![image-20220726130549285](./21_JavaScript模块化.assets/image-20220726130549285.png)
 
 
 
@@ -561,27 +561,27 @@ CMD也有自己比较优秀的实现方案：
 
 - seajs是指定主入口文件的
 
-![image-20220805075117151](.\21_JavaScript模块化\image-20220805075117151.png)
+![image-20220805075117151](./21_JavaScript模块化.assets/image-20220805075117151.png)
 
 导入
 
-![image-20220805075437264](.\21_JavaScript模块化\image-20220805075437264.png)
+![image-20220805075437264](./21_JavaScript模块化.assets/image-20220805075437264.png)
 
 导出
 
-![image-20220805075600618](.\21_JavaScript模块化\image-20220805075600618.png)
+![image-20220805075600618](./21_JavaScript模块化.assets/image-20220805075600618.png)
 
 
 
 
 
-![image-20220726130732078](.\21_JavaScript模块化\image-20220726130732078.png)
+![image-20220726130732078](./21_JavaScript模块化.assets/image-20220726130732078.png)
 
-![image-20220726130741886](.\21_JavaScript模块化\image-20220726130741886.png)
+![image-20220726130741886](./21_JavaScript模块化.assets/image-20220726130741886.png)
 
-![image-20220726130756344](.\21_JavaScript模块化\image-20220726130756344.png)
+![image-20220726130756344](./21_JavaScript模块化.assets/image-20220726130756344.png)
 
-![image-20220726130814639](.\21_JavaScript模块化\image-20220726130814639.png)
+![image-20220726130814639](./21_JavaScript模块化.assets/image-20220726130814639.png)
 
 
 
@@ -677,11 +677,11 @@ live-server
 
 通过本地打开
 
-![image-20220811072121747](.\21_JavaScript模块化\image-20220811072121747.png)
+![image-20220811072121747](./21_JavaScript模块化.assets/image-20220811072121747.png)
 
 是因为当前，如果要把一个文件当成一个模块，也就是把上面的foo和main.js当成模块的话，光在script标签上面添加`type='module'`是不行的，你不能用file这个url-scheme前缀（fille、https、http这些被称为url-scheme前缀），你可以用http、或者https，因为file不能正常的去加载一个模块
 
-![image-20220811072541661](.\21_JavaScript模块化\image-20220811072541661.png)
+![image-20220811072541661](./21_JavaScript模块化.assets/image-20220811072541661.png)
 
 
 
@@ -797,7 +797,7 @@ foo.age;
 
 补充：export和import可以结合使用
 
-![image-20220726131239448](.\21_JavaScript模块化\image-20220726131239448.png)
+![image-20220726131239448](./21_JavaScript模块化.assets/image-20220726131239448.png)
 
 为什么要这样做呢？
 
@@ -997,7 +997,7 @@ console.log(import.meta)
 
 import属性本身也是一个对象：{ url: 当前模块所在的路径 }
 
-![image-20220811080912896](.\21_JavaScript模块化\image-20220811080912896.png)
+![image-20220811080912896](./21_JavaScript模块化.assets/image-20220811080912896.png)
 
 
 
@@ -1014,7 +1014,7 @@ import属性本身也是一个对象：{ url: 当前模块所在的路径 }
 - 如果根据不懂的条件，动态来选择加载模块的路径；
 - 这个时候我们需要使用 import() 函数来动态加载；
 
-![image-20220726131506371](.\21_JavaScript模块化\image-20220726131506371.png)
+![image-20220726131506371](./21_JavaScript模块化.assets/image-20220726131506371.png)
 
 这种情况下会报错的，因为代码在放到浏览器执行的时候，会先进行编译，在编译阶段的时候发现你的if中有import关键字，就会抛出错误，因为你不能确定你导出的是什么，他需要在编译的时候就确定一个依赖关系
 
@@ -1026,7 +1026,7 @@ import属性本身也是一个对象：{ url: 当前模块所在的路径 }
 
 其实import他还是一个函数，看下面，是在调import这个函数的
 
-![image-20220726131523445](.\21_JavaScript模块化\image-20220726131523445.png)
+![image-20220726131523445](./21_JavaScript模块化.assets/image-20220726131523445.png)
 
 那么怎么保证有存在这个依赖还是没有存在这个依赖，import函数是异步加载，所以后面有then和catch，这个是ESmodule给我们提供的实际的函数
 
@@ -1046,7 +1046,7 @@ ES Module的解析过程可以划分为三个阶段：
 - 阶段二：实例化（Instantiation），对模块记录进行实例化，并且分配内存空间，解析模块的导入和导出语句，把模块指向 对应的内存地址。
 - 阶段三：运行（Evaluation），运行代码，计算值，并且将值填充到内存地址中；
 
-![image-20220726132034128](.\21_JavaScript模块化\image-20220726132034128.png)
+![image-20220726132034128](./21_JavaScript模块化.assets/image-20220726132034128.png)
 
 
 
@@ -1058,23 +1058,23 @@ esmodule原理
 
 根据地址查找js文件，并且下载，将其解析成模块记录（Module Record）；
 
-![image-20220812075142703](.\21_JavaScript模块化\image-20220812075142703.png)
+![image-20220812075142703](./21_JavaScript模块化.assets/image-20220812075142703.png)
 
 这些js文件应该是在服务器中，应该先找到js文件，然后给他下载下来，下载下来之后，esmodule才能对它进行解析
 
 在main的js中还会引用其他的js文件
 
-![image-20220812075308956](.\21_JavaScript模块化\image-20220812075308956.png)
+![image-20220812075308956](./21_JavaScript模块化.assets/image-20220812075308956.png)
 
 那么这些js文件应该会继续被下载，如果foo.js文件又有引用其他的文件，那么应该会继续被下载
 
-应该是这样一个过程（只看阶段一）![image-20220812075448018](.\21_JavaScript模块化\image-20220812075448018.png)
+应该是这样一个过程（只看阶段一）![image-20220812075448018](./21_JavaScript模块化.assets/image-20220812075448018.png)
 
 因为file是本地的，但是esmodule是需要下载的，必须要通过http/https进行下载的，必须有这样一个过程
 
 那么下载下来之后会怎么做呢？
 
-![image-20220812075818709](.\21_JavaScript模块化\image-20220812075818709.png)
+![image-20220812075818709](./21_JavaScript模块化.assets/image-20220812075818709.png)
 
 这个就是阶段一，完成了构建
 
@@ -1086,7 +1086,7 @@ esmodule原理
 
 那么创建对象的过程，被称为实例化的过程
 
-![image-20220812080107533](.\21_JavaScript模块化\image-20220812080107533.png)
+![image-20220812080107533](./21_JavaScript模块化.assets/image-20220812080107533.png)
 
 
 
@@ -1094,11 +1094,11 @@ esmodule原理
 
 假设有一个模块，这个模块最后有一个export，在上面这个阶段将这个export导出，并且分配一块内存，这块内存其实就保存着name的值，保存着age的值，但是在第二个阶段实际保存的是空值也就是未定义的值(undefined)
 
-![image-20220812080520215](.\21_JavaScript模块化\image-20220812080520215.png)
+![image-20220812080520215](./21_JavaScript模块化.assets/image-20220812080520215.png)
 
 为什么是未定义呢？因为在实例化的时候，内部代码没有运行
 
-![image-20220812080716090](.\21_JavaScript模块化\image-20220812080716090.png)
+![image-20220812080716090](./21_JavaScript模块化.assets/image-20220812080716090.png)
 
 js引擎针对模块化文件，它是分开执行的，先执行import语句和export语句,也就是中间的代码不会执行的
 
@@ -1108,7 +1108,7 @@ js引擎针对模块化文件，它是分开执行的，先执行import语句和
 
 之后才能知道导出的name是什么，age是什么
 
-![image-20220812081042252](.\21_JavaScript模块化\image-20220812081042252.png)
+![image-20220812081042252](./21_JavaScript模块化.assets/image-20220812081042252.png)
 
 这块内存就会保存具体值
 
@@ -1122,7 +1122,7 @@ js引擎针对模块化文件，它是分开执行的，先执行import语句和
 
 阶段一构建：
 
-![image-20220815070001706](.\21_JavaScript模块化\image-20220815070001706.png)
+![image-20220815070001706](./21_JavaScript模块化.assets/image-20220815070001706.png)
 
 假如说有一个script标签引入了main.js文件，这个main.js文件是在服务器当中，我会会下载这个文件，并且加上了`type='module'`就表示这个文件是一个模块化的文件，会先fetch进行下载，然后对这个js文件进行解析，这个解析被称为静态分析的过程，也就是不会运行这个文件，假设有这种代码
 
@@ -1158,11 +1158,11 @@ if (isFlag) {
 
 当这样写的时候才能进行静态分析，当静态分析后会生成Module Record这样一个数据解构，他有一个专门的的属性是用来记录当前文件依赖哪些属性：RequestedModules，假设还依赖counter.js、display.js，这个时候还没有开始运行代码，他会接着继续下载counter.js和display.js文件，然后继续解析成Module Record这样的数据结构，如果没有依赖其他文件就不再请求了，如果这两个文件还依赖其他文件，那么依然会重复上面的下载和解析。
 
-![image-20220815070213299](.\21_JavaScript模块化\image-20220815070213299.png)
+![image-20220815070213299](./21_JavaScript模块化.assets/image-20220815070213299.png)
 
 如果有两个文件依赖同一个文件，会不会重复下载呢？不会的，在实现EsModule的时候会用map做一个缓存的，一旦发现这个文件已经下载过来，就不会再下载了
 
-![image-20220815070334814](.\21_JavaScript模块化\image-20220815070334814.png)
+![image-20220815070334814](./21_JavaScript模块化.assets/image-20220815070334814.png)
 
 上面的图中就展示了这种隐射关系，比如比如main.js下载过来，他这个文件就对应右边的Module Record，counter也是一样，还有比如display处于正在下载的情况，也会存在隐射当着，那么其他文件需要依赖的话也不会重复下载了。
 
@@ -1176,39 +1176,39 @@ if (isFlag) {
 
 假设已经有了main.js、counter.js、display.js对应的Module Record了
 
-![image-20220815070735567](.\21_JavaScript模块化\image-20220815070735567.png)
+![image-20220815070735567](./21_JavaScript模块化.assets/image-20220815070735567.png)
 
 有了他们之后暂时还不能使用的，我们可以把他理解为一个类一样，需要实例化。比如counter.js导出了count，那么经过实例化以后会生成Module Environment Record(模块环境记录)，这个东西有一个东西叫Bindings（绑定），这里绑定的是count，这里的count会记录着他的值，然后紧接着会在实例化后分配的空间记录着他的值，在记录的过程当中，首先他是一个undefined
 
-![image-20220815071001760](.\21_JavaScript模块化\image-20220815071001760.png)
+![image-20220815071001760](./21_JavaScript模块化.assets/image-20220815071001760.png)
 
 这里display也有一个Module Record他也会导出一个render函数，然后在Module Environment Record进行绑定，然后也会在实例化后开辟的空间中进行保存，但是保存的最开始保存的也是undefined，因为不知道他的值是什么
 
-![image-20220815071103518](.\21_JavaScript模块化\image-20220815071103518.png)
+![image-20220815071103518](./21_JavaScript模块化.assets/image-20220815071103518.png)
 
 这个时候main.js进行了一个导入（importEntries：导入了一些东西），它导入了count和render这两个变量，这个时候就可以在main.js对应的Module Record创建出来的Module Environment Record中绑定这两个变量，但是他绑定是通过导入绑定的这两个值。但是这个时候，在main.js中想要使用count和render他们都是undefined
 
 所以这个时候就会进入第三个阶段求值阶段
 
-![image-20220815071252770](.\21_JavaScript模块化\image-20220815071252770.png)
+![image-20220815071252770](./21_JavaScript模块化.assets/image-20220815071252770.png)
 
 进入求值阶段的话就会运行counter.js和render.js里面的代码，比如counter.js里面有一行代码是`counter=5`，那么这个时候counter就会有值了，就等于5，比如render.js中有代码写的是`function render(){}`，那么render也会有值了是一个函数地址。
 
 这个时候再运行main.js中的代码的话引入的count和render也就有值了
 
-![image-20220815071352258](.\21_JavaScript模块化\image-20220815071352258.png)
+![image-20220815071352258](./21_JavaScript模块化.assets/image-20220815071352258.png)
 
 这个时候我们打印count的时候就可以通过绑定的count去内存里面取那个5的值了，因为刚才在求值的过程中，已经把这个内存中的count赋值为5了，所以在log(count)得到的就是5了，render也是同样的道理
 
 那么有一个场景是这样，在counter.js中有一个定时器，等这个定时器到时间的时候，给count重新赋值会怎么样呢？
 
-![image-20220815071645731](.\21_JavaScript模块化\image-20220815071645731.png)
+![image-20220815071645731](./21_JavaScript模块化.assets/image-20220815071645731.png)
 
 他同样是可以改变的，他会在内存中把这个count改成100，那么在main.js中也写一个定时器，时间为两秒中，重新打印这个count的话，这个时候的count也会变成100
 
 那么试想一下，导出和导入取得都是中间这块内存的话，在导出的时候可以通过修改count后，让导入的count发生变化，那么可不可以再导入的时候也修改中间这块内存中count的值呢？答案是不可以的
 
-![image-20220815071724444](.\21_JavaScript模块化\image-20220815071724444.png)
+![image-20220815071724444](./21_JavaScript模块化.assets/image-20220815071724444.png)
 
 是不允许的，所以有这幅图有一句话，exporting module can update variable value, but importing module cannot update variable value，也就是说导出的时候可以修改，但是导入的时候不能修改
 
@@ -1218,19 +1218,19 @@ if (isFlag) {
 
 在代码上验证：
 
-![image-20220815072453357](.\21_JavaScript模块化\image-20220815072453357.png)
+![image-20220815072453357](./21_JavaScript模块化.assets/image-20220815072453357.png)
 
 只有加上`type='module'`才表示这个文件的类型是module，
 
 首先会把main.js这个文件进行下载，然后解析main.js解析出来一个Module Record这个数据结构，在解析出来main.js的Module Record这个数据解构中有一个属性叫做requestedModules，这个属性记录着main.js中依赖的其他文件，所以发现main.js还依赖foo.js，那么会接着下载foo.js这个文件，然后接着解析foo.js的Module Record这样的数据解构，然后在发现Module Record这个数据解构中的requestedModules没有依赖其他文件，这个静态解析就结束了
 
-![image-20220815072835113](.\21_JavaScript模块化\image-20220815072835113.png)
+![image-20220815072835113](./21_JavaScript模块化.assets/image-20220815072835113.png)
 
 静态解析结束以后，就会实例化我们的Module Record然后生成它的Module enverionment record，也就是模块环境记录，它里面有一个属性叫做bingdings，绑定着我们导出的变量
 
 但是在初始的时候，导出的实际上都是undefined，然后会运行代码，给这些导出赋值（阶段三）
 
-![image-20220815073016044](.\21_JavaScript模块化\image-20220815073016044.png)
+![image-20220815073016044](./21_JavaScript模块化.assets/image-20220815073016044.png)
 
 经历以上的步骤之后，我们的main.js才算能真正拿到foo.js导出的值。
 
@@ -1238,7 +1238,7 @@ if (isFlag) {
 
 在导入的文件中不能修改导出的值，也就是第五行的代码是不能赋值的，因为不允许在导入位置给导出的变量赋值
 
-![image-20220815073102518](.\21_JavaScript模块化\image-20220815073102518.png)
+![image-20220815073102518](./21_JavaScript模块化.assets/image-20220815073102518.png)
 
 否则会报错
 

@@ -209,7 +209,7 @@ console.log(namesIterator.next());
 
 - 当一个对象变成一个可迭代对象的时候，进行某些迭代操作，比如 for...of 操作时，其实就会调用它的 @@iterator 方法；
 
-![image-20220712064835100](.\19_Iterator-Generator\image-20220712064835100.png)
+![image-20220712064835100](./19_Iterator-Generator.assets/image-20220712064835100.png)
 
 把这三个东西封装到一个对象里面，这个对象称之为可迭代对象
 
